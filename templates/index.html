@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTG Token Creator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🃏 MTG Token Creator</h1>
+            <p>Create custom Magic: The Gathering tokens using Scryfall card art</p>
+        </header>
+
+        <main class="main-content">
+            <!-- Search Section -->
+            <section class="search-section">
+                <div class="search-container">
+                    <input 
+                        type="text" 
+                        id="cardSearch" 
+                        placeholder="Search for a card (e.g., Esper Sentinel)"
+                        class="search-input"
+                    >
+                    <button id="searchBtn" class="search-btn">Search</button>
+                </div>
+                
+                <div id="searchResults" class="search-results hidden">
+                    <h3>Search Results</h3>
+                    <div id="resultsList" class="results-list"></div>
+                </div>
+            </section>
+
+            <!-- Token Customization Section -->
+            <section class="customization-section hidden" id="customizationSection">
+                <h3>Customize Your Token</h3>
+                
+                <div class="form-grid">                    
+                    <div class="form-group">
+                        <label for="power">Power</label>
+                        <input type="text" id="power" placeholder="e.g., 2">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="toughness">Toughness</label>
+                        <input type="text" id="toughness" placeholder="e.g., 2">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subtype">Subtype (e.g., Zombie, Soldier, Goblin)</label>
+                        <input type="text" id="subtype" placeholder="e.g., Zombie, Soldier, Goblin">
+                        <small class="form-help">This will replace the creature type (e.g., "Creature - Zombie")</small>
+                    </div>
+                </div>
+                
+                <button id="generateTokenBtn" class="generate-btn">Generate Token</button>
+            </section>
+
+            <!-- Preview Section -->
+            <section class="preview-section hidden" id="previewSection">
+                <h3>Your Token</h3>
+                <div class="token-preview">
+                    <img id="tokenImage" alt="Generated token" class="token-image">
+                </div>
+                <div class="token-actions">
+                    <button id="downloadBtn" class="download-btn">Download Token</button>
+                    <button id="newTokenBtn" class="new-token-btn">Create Another Token</button>
+                </div>
+            </section>
+
+            <!-- Loading State -->
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p>Generating your token...</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
